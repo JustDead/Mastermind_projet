@@ -29,6 +29,15 @@ input[type=submit]:hover{
   border:none;
 }
 
+input[type=radio]{
+  width:100%;
+  outline: 1px solid red;
+}
+
+table{
+  width: 100%;
+}
+
 .fenetre_jeu {
   padding:0;
   width:70%;
@@ -52,4 +61,40 @@ input[type=submit]:hover{
   margin:0;
   background-color: #785;
   float: right;
+}
+
+.rbutton{
+  outline: 1px solid red;
+}
+
+.couleur1{
+  background-color: #FF0;
+}
+
+.couleur2{
+  background-color: #F0F;
+}
+
+.couleur3{
+  background-color: #00F;
+}
+
+.couleur4{
+  background-color: #FFA500;
+}
+
+.couleur5{
+  background-color: #800;
+}
+
+.couleur6{
+  background-color: #800080;
+}
+
+.couleur7{
+  background-color: #F0F;
+}
+
+.couleur8{
+  background-color: #F00;
 }
