@@ -13,10 +13,6 @@ body{
   background-color: #888;
 }
 
-input{
-  padding: 6px 10px;
-}
-
 input[type=submit]{
   color: white;
   background-color: #181;
@@ -39,25 +35,21 @@ input[type=submit]:hover{
   height: 85%;
   margin-left: 15%;
   margin-top: 3%;
-  background-color: #039;
   display: flex;
 }
 
-.fenetre_auth{
-  width:58%;
-  height:55%;
-  margin: auto;
-  display: flex;
-}
-
-.auth{
-  margin: auto;
-  text-align: center;
-}
-
-.texte{
-  text-align: left;
-  font-size: 25px;
-  font-weight: bold;
+.fenetre_joueur{
+  width:50%;
+  height:100%;
   margin:0;
+  background-color: #654;
+  float: left;
+}
+
+.affichage{
+  width:50%;
+  height:100%;
+  margin:0;
+  background-color: #785;
+  float: right;
 }

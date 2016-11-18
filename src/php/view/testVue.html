@@ -8,15 +8,19 @@
 <body>
 <div class="fenetre_jeu">
   <div class="fenetre_auth">
-    <form method="post" action="../controler/authCtrl.php">
-      Pseudo : <input type="text" name="pseudo"/>
-      </br>
-      </br>
-      Mdp : <input type="password" name="psw"/>
-      </br>
-      </br>
-      <input type="submit" name="Valider" value="envoyer"/>
-    </form>
+    <div class="auth">
+      <form method="post" action="../controler/authCtrl.php">
+          <p class="texte">Pseudo</p>
+          <input type="text" name="pseudo"/>
+          <br />
+          <br />
+          <p class="texte">Mot de passe</p>
+          <input type="password" name="psw"/>
+          <br />
+          <br />
+          <input type="submit" name="Valider" value="ENVOYER"/>
+      </form>
+    </div>
   </div>
 </div>
 </body>
