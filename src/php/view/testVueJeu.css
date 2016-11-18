@@ -29,13 +29,43 @@ input[type=submit]:hover{
   border:none;
 }
 
-input[type=radio]{
-  width:100%;
-  outline: 1px solid red;
+input[type=radio] {
+  visibility: hidden;
+  position: relative;
+
+  margin-left: 5px;
+  width: 100%;
+  height: 100%;
+}
+
+input[type=radio]:before {
+  content: "";
+  visibility: visible;
+  position: absolute;
+
+  border: 2px solid #eb6864;
+  border-radius: 50%;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 table{
-  width: 100%;
+  margin-left:12%;
+  margin-top: 1%;
+  width: 70%;
+  height: 70%;
+  padding:0;
+}
+
+tr{
+  height:90px;
+}
+
+tr,input[type=radio]:first-child{
+  margin-left:20%;
 }
 
 .fenetre_jeu {
@@ -51,8 +81,10 @@ table{
   width:50%;
   height:100%;
   margin:0;
+  padding: 0;
   background-color: #654;
   float: left;
+  text-align: center;
 }
 
 .affichage{
@@ -63,38 +95,66 @@ table{
   float: right;
 }
 
-.rbutton{
-  outline: 1px solid red;
+input[type=radio].couleur1:before{
+  border: 2px solid #FF0;
 }
 
-.couleur1{
+input[type=radio].couleur2:before{
+  border: 2px solid #F0F;
+}
+
+input[type=radio].couleur3:before{
+  border: 2px solid #00F;
+}
+
+input[type=radio].couleur4:before{
+  border: 2px solid #FFA500;
+}
+
+input[type=radio].couleur5:before{
+  border: 2px solid #800;
+}
+
+input[type=radio].couleur6:before{
+  border: 2px solid #800080;
+}
+
+input[type=radio].couleur7:before{
+  border: 2px solid #F0F;
+}
+
+input[type=radio].couleur8:before{
+  border: 2px solid #F00;
+}
+
+input[type=radio].couleur1:checked:before{
   background-color: #FF0;
 }
 
-.couleur2{
+input[type=radio].couleur2:checked:before{
   background-color: #F0F;
 }
 
-.couleur3{
+input[type=radio].couleur3:checked:before{
   background-color: #00F;
 }
 
-.couleur4{
+input[type=radio].couleur4:checked:before{
   background-color: #FFA500;
 }
 
-.couleur5{
+input[type=radio].couleur5:checked:before{
   background-color: #800;
 }
 
-.couleur6{
+input[type=radio].couleur6:checked:before{
   background-color: #800080;
 }
 
-.couleur7{
+input[type=radio].couleur7:checked:before{
   background-color: #F0F;
 }
 
-.couleur8{
+input[type=radio].couleur8:checked:before{
   background-color: #F00;
 }
