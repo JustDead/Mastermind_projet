@@ -24,7 +24,7 @@ class Couleur{
         break;
       case 2:
         $nom = 'vert';
-        $hexa = '#F0F';
+        $hexa = '#0F0';
         break;
       case 3:
         $nom = 'bleu';
