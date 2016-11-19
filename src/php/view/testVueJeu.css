@@ -20,6 +20,7 @@ input[type=submit]{
   border: none;
   border-radius: 5px;
   padding: 15px 25px;
+
 }
 
 input[type=submit]:hover{
@@ -43,7 +44,6 @@ input[type=radio]:before {
   visibility: visible;
   position: absolute;
 
-  border: 2px solid #eb6864;
   border-radius: 50%;
 
   top: 0;
@@ -96,35 +96,35 @@ tr,input[type=radio]:first-child{
 }
 
 input[type=radio].couleur1:before{
-  border: 2px solid #FF0;
+  border: 10px solid #FF0;
 }
 
 input[type=radio].couleur2:before{
-  border: 2px solid #F0F;
+  border: 10px solid #0F0;
 }
 
 input[type=radio].couleur3:before{
-  border: 2px solid #00F;
+  border: 10px solid #00F;
 }
 
 input[type=radio].couleur4:before{
-  border: 2px solid #FFA500;
+  border: 10px solid #FFA500;
 }
 
 input[type=radio].couleur5:before{
-  border: 2px solid #800;
+  border: 10px solid #800;
 }
 
 input[type=radio].couleur6:before{
-  border: 2px solid #800080;
+  border: 10px solid #800080;
 }
 
 input[type=radio].couleur7:before{
-  border: 2px solid #F0F;
+  border: 10px solid #F0F;
 }
 
 input[type=radio].couleur8:before{
-  border: 2px solid #F00;
+  border: 10px solid #F00;
 }
 
 input[type=radio].couleur1:checked:before{
@@ -132,7 +132,7 @@ input[type=radio].couleur1:checked:before{
 }
 
 input[type=radio].couleur2:checked:before{
-  background-color: #F0F;
+  background-color: #0F0;
 }
 
 input[type=radio].couleur3:checked:before{
