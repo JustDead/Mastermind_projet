@@ -6,58 +6,72 @@ class Couleur{
   private $hexa;
 
   function __construct($numero){
+    if (!isset($numero)){
+      $numero = 42;
+    }
     switch ($numero) {
       // La couleur est correcte mais pas l'emplacement
       case -1:
-        $nom = 'blanc';
-        $hexa = '#FFF';
+        $this->nom = 'blanc';
+        $this->hexa = '#FFF';
         break;
       // La couleur et l'meplacement sont corrects
       case 0:
-        $nom = 'noir';
-        $hexa = '#000';
+        $this->nom = 'noir';
+        $this->hexa = '#000';
         break;
       // Les couleurs sont attribuées arbitrairement
       case 1:
-        $nom = 'jaune';
-        $hexa = '#FF0';
+        $this->nom = 'jaune';
+        $this->hexa = '#FF0';
         break;
       case 2:
-        $nom = 'vert';
-        $hexa = '#0F0';
+        $this->nom = 'vert';
+        $this->hexa = '#0F0';
         break;
       case 3:
-        $nom = 'bleu';
-        $hexa = '#00F';
+        $this->nom = 'bleu';
+        $this->hexa = '#00F';
         break;
       case 4:
-        $nom = 'orange';
-        $hexa = '#FFA500';
+        $this->nom = 'orange';
+        $this->hexa = '#FFA500';
         break;
       case 5:
-        $nom = 'marron';
-        $hexa = '#800';
+        $this->nom = 'marron';
+        $this->hexa = '#800';
         break;
       case 6:
-        $nom = 'violet';
-        $hexa = '#800080';
+        $this->nom = 'violet';
+        $this->hexa = '#800080';
         break;
       case 7:
-        $nom = 'fuschia';
-        $hexa = '#F0F';
+        $this->nom = 'fuschia';
+        $this->hexa = '#F0F';
         break;
       case 8:
-        $nom = 'rouge';
-        $hexa = '#F00';
+        $this->nom = 'rouge';
+        $this->hexa = '#F00';
         break;
       // Rien n'est correct, on affiche du transparent car c'est vide
       default:
-        $nom ='vide';
-        $hexa = 'rgba(0, 0, 255, 0, 0)';
+        $this->nom ='vide';
+        $this->hexa = 'rgba(0, 0, 255, 0, 0)';
         break;
     }
   }
 
+  function getNom(){
+    return $this->nom;
+  }
+
+  function getHexa(){
+    return $this->hexa;
+  }
+
+  function __toString(){
+    return $this->nom.' '.$this->hexa;
+  }
 
 }
  ?>

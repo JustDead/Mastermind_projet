@@ -1,4 +1,5 @@
 <?php
+require_once "Combinaison.php";
 class Partie{
   private $compteur_Coup;         // entier qui compte le nombre de coups jouer par le joueur
   private $partie_Finie;          // false si en partie, true si partie finie (10 coups ou Combi trouvée)

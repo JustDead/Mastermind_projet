@@ -1,4 +1,5 @@
 <?php
+require_once "Couleur.php";
 class Combinaison{
   private $couleurs;
 
@@ -6,20 +7,23 @@ class Combinaison{
     $this->couleurs = array($c1,$c2,$c3,$c4);
   }
 
-  function compareTo($combiTest){
+  function compareTo($combiEssai){
+    //On transforme les données en tableaux de string représentant le nom de la couleur
+    $tabEssai = array_map(function($c){return $c->getNom();}, $combiEssai->getCouleurs());
+    $tabGagnant = array_map(function($c){return $c->getNom();}, $this->couleurs);
     // On enlève les pions de bonnes couleur et position
-    $gagnant = array_diff_assoc($this->couleurs,$combiTest);
-    $essai = array_diff_assoc($combiTest,$this->couleurs);
+    $gagnant = array_diff_assoc($tabGagnant,$tabEssai);
+    $essai = array_diff_assoc($tabEssai,$tabGagnant);
     // On ajoute le nombre de pions exactes
     $check = array();
     for ($i=0; $i < 4-sizeof($gagnant); $i++) {
       array_push($check, new Couleur(0));
     }
-    // On compte le nombre d'occurences à chaque terme
+    // On compte le nombre d'occurences de chaque couleur dans la solution et dans l'essai
     $compte_Gagnant = array_count_values($gagnant);
     $compte_Essai = array_count_values($essai);
     foreach ($compte_Gagnant as $couleur => $nb) {
-      if (array_search($couleur,$compte_Essai)){
+      if (isset($compte_Essai[$couleur])){
         $nb_Essai = $compte_Essai[$couleur];
         $tmp = $nb-$nb_Essai;
         // C'est bon, on ajoute les occurences de la couleur
@@ -42,14 +46,28 @@ class Combinaison{
         }
       }
     }
+
     // On remplit le résultat avec des pions vides
     for ($i=0; $i < 4-sizeof($check); $i++) {
       array_push($check, new Couleur(null));
     }
-    // Enfin, on renvoie la combinaison adaptée
+    // Enfin, on renvoie la combinaison associée
     $combinaisonCheck = new Combinaison($check[0],$check[1],$check[2],$check[3]);
 
     return $combinaisonCheck;
+  }
+
+  function getCOuleurs(){
+    return $this->couleurs;
+  }
+//Pour les tests
+  function testAfficher(){
+    foreach ($this->getCouleurs() as $c) {
+      echo $c;
+      ?>
+    </br>
+    <?php
+    }
   }
 
 }
