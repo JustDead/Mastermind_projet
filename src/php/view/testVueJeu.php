@@ -115,7 +115,16 @@
         </tr>
         <?php
       }
-         ?>
+      ?>
+      <tr>
+        <?php
+      for ($j=0; $j < 4; $j++) {
+        ?>
+          <td><div class = "gagnant">?</div></td>
+        <?php
+      } ?>
+      </tr>
+
   </table>
     </div>
   </div>
