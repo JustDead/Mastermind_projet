@@ -1,38 +1,58 @@
 <?php
 require_once "Combinaison.php";
 class Partie{
-  private $compteur_Coup;         // entier qui compte le nombre de coups jouer par le joueur
-  private $partie_Finie;          // false si en partie, true si partie finie (10 coups ou Combi trouvée)
-  private $partie_Gagnee;         // false si partie perdue, true si partie gagnée
-  private $coups_Joues;           // matrice contenant les coups jouer coup X combinaison jouer/check
+  private $compteur_coups;         // entier qui compte le nombre de coups joués par le joueur
+  private $partie_finie;          // false si partie en cours, true si partie finie (10 coups ou Combi trouvée)
+  private $partie_gagnee;         // false si partie perdue, true si partie gagnée
+  private $coups_joues;           // matrice contenant les coups joués : coup X combinaison (check:joué)
   private $joueur;                // Le joueur qui va jouer
-  private $combinaison_Gagnante;  // La combinaison créer lors de l'instanciation de cette classe
+  private $combinaison_gagnante;  // La combinaison créée lors de l'instanciation de cette classe
 
   public function __construct($leJoueur){
-    $this->$joueur = $leJoueur;
-    $this->$partie_Fini = false;
-    $this->$partie_Gagnee = false;
-    $this->$compteur_Coup = 0;
-    $this->$coups_Joues = array();
+    $this->joueur = $leJoueur;
+    $this->partie_finie = false;
+    $this->partie_gagnee = false;
+    $this->compteur_coups = 0;
+    $this->coups_joues = array();
     // Création aléatoire de la combinaison gagante de la partie
-    $this->$combinaison_Gagante = new Combinaison(new Couleur(rand(1,8)),new Couleur(rand(1,8)),new Couleur(rand(1,8)), new Couleur(rand(1,8)));
+    $this->combinaison_gagnante = new Combinaison(new Couleur(rand(1,8)),new Couleur(rand(1,8)),new Couleur(rand(1,8)), new Couleur(rand(1,8)));
   }
 
   public function jouer($combinaison_joueur){
-    $combinaison_check = $this->$combinaison_gagnante->compareTo($combinaison_joueur);
-    if($combinaison_check==new Combinaison(new Couleur(0),new Couleur(0),new Couleur(0),new Couleur(0))){
-      $this->$partie_Gagnee = true;
-      $this->$partie_Fini = true;
+    $combinaison_check = $this->combinaison_gagnante->compareTo($combinaison_joueur);
+    // On transforme les couleurs en 0 si noir (valide) ou 1 sinon, puis on fait la somme pour voir si tout est bon
+    $check = array_sum(array_map(function($c){return $c->getNom()=='noir' ? 0 : 1;}, $combinaison_check->getCouleurs()));
+    if($check==0){
+      $this->partie_gagnee = true;
+      $this->partie_finie = true;
     }
-    array_push($this->$coupsJoues, array($combinaison_joueur,$combinaison_check));
-    $this->$compteur_Coup++;
+    array_push($this->coups_joues, array($combinaison_joueur,$combinaison_check));
+    $this->compteur_coups++;
     $this->checkFini();
   }
 
   public function checkFini(){
-    if($compteur_Coup>9){
-      $partie_Finie = true;
-    }
+      $this->partie_finie = $this->compteur_coups>9 || $this->partie_gagnee;
+  }
+
+  function getCoupsJoues(){
+    return $this->coups_joues;
+  }
+
+  function getcombiGagnante(){
+    return $this->combinaison_gagnante;
+  }
+
+  function getPartieFinie(){
+    return $this->partie_finie;
+  }
+
+  function getPartieGagnee(){
+    return $this->partie_gagnee;
+  }
+
+  function getNbCoups(){
+    return $this->compteur_coups;
   }
 }
 ?>

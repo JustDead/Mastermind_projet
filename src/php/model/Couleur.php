@@ -2,7 +2,7 @@
 class Couleur{
   // Nom pour savoir quelle couleur on manipule
   private $nom;
-  // Code hexadéciamle pour l'affichage
+  // Code hexadécimal pour l'affichage
   private $hexa;
 
   function __construct($numero){
@@ -15,7 +15,7 @@ class Couleur{
         $this->nom = 'blanc';
         $this->hexa = '#FFF';
         break;
-      // La couleur et l'meplacement sont corrects
+      // La couleur et l'emplacement sont corrects
       case 0:
         $this->nom = 'noir';
         $this->hexa = '#000';

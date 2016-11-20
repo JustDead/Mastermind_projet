@@ -48,26 +48,26 @@ class Combinaison{
     }
 
     // On remplit le résultat avec des pions vides
-    for ($i=0; $i < 4-sizeof($check); $i++) {
+    while(sizeof($check)<4) {
       array_push($check, new Couleur(null));
     }
+
     // Enfin, on renvoie la combinaison associée
     $combinaisonCheck = new Combinaison($check[0],$check[1],$check[2],$check[3]);
 
     return $combinaisonCheck;
   }
 
-  function getCOuleurs(){
+  function getCouleurs(){
     return $this->couleurs;
   }
-//Pour les tests
-  function testAfficher(){
+
+  function __toString(){
+    $string = '';
     foreach ($this->getCouleurs() as $c) {
-      echo $c;
-      ?>
-    </br>
-    <?php
+      $string .= $c . '</br>';
     }
+    return $string;
   }
 
 }
