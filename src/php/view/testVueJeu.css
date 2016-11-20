@@ -30,6 +30,13 @@ input[type=submit]:hover{
   border:none;
 }
 
+input[type="radio"] {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/*
 input[type=radio] {
   visibility: hidden;
   position: relative;
@@ -51,7 +58,7 @@ input[type=radio]:before {
   bottom: 0;
   left: 0;
 }
-
+*/
 table{
   margin-left:12%;
   margin-top: 1%;
@@ -95,66 +102,193 @@ tr,input[type=radio]:first-child{
   float: right;
 }
 
-input[type=radio].couleur1:before{
+input[type="radio"].couleur1 + label{
+  padding : 4px 0 0 24px;
+}
+
+input[type="radio"].couleur1 + label::before{
+  display: inline-block;
+width: 20px;
+height: 20px;
+top: 0;
+left: 0;
+content: " ";
+vertical-align: middle;
   border: 10px solid #FF0;
 }
 
-input[type=radio].couleur2:before{
+input[type="radio"].couleur2 + label{
+  padding : 4px 0 0 24px;
+}
+
+input[type="radio"].couleur2 + label::before{
+  display: inline-block;
+width: 20px;
+height: 20px;
+top: 0;
+left: 0;
+content: " ";
+vertical-align: middle;
   border: 10px solid #0F0;
 }
 
-input[type=radio].couleur3:before{
+input[type="radio"].couleur3 + label{
+  padding : 4px 0 0 24px;
+}
+
+input[type="radio"].couleur3 + label::before{
+  display: inline-block;
+width: 20px;
+height: 20px;
+top: 0;
+left: 0;
+content: " ";
+vertical-align: middle;
   border: 10px solid #00F;
 }
 
-input[type=radio].couleur4:before{
+input[type="radio"].couleur4 + label{
+  padding : 4px 0 0 24px;
+}
+
+input[type="radio"].couleur4 + label::before{
+  display: inline-block;
+width: 20px;
+height: 20px;
+top: 0;
+left: 0;
+content: " ";
+vertical-align: middle;
   border: 10px solid #FFA500;
 }
 
-input[type=radio].couleur5:before{
+input[type="radio"].couleur5 + label{
+  padding : 4px 0 0 24px;
+}
+
+input[type="radio"].couleur5 + label::before{
+  display: inline-block;
+width: 20px;
+height: 20px;
+top: 0;
+left: 0;
+content: " ";
+vertical-align: middle;
   border: 10px solid #800;
 }
 
-input[type=radio].couleur6:before{
+input[type="radio"].couleur6 + label{
+  padding : 4px 0 0 24px;
+}
+
+input[type="radio"].couleur6 + label::before{
+  display: inline-block;
+width: 20px;
+height: 20px;
+top: 0;
+left: 0;
+content: " ";
+vertical-align: middle;
   border: 10px solid #800080;
 }
 
-input[type=radio].couleur7:before{
+input[type="radio"].couleur7 + label{
+  padding : 4px 0 0 24px;
+}
+
+input[type="radio"].couleur7 + label::before{
+  display: inline-block;
+width: 20px;
+height: 20px;
+top: 0;
+left: 0;
+content: " ";
+vertical-align: middle;
   border: 10px solid #F0F;
 }
 
-input[type=radio].couleur8:before{
+input[type="radio"].couleur8 + label{
+  padding : 4px 0 0 24px;
+}
+
+input[type="radio"].couleur8 + label::before{
+  display: inline-block;
+width: 20px;
+height: 20px;
+top: 0;
+left: 0;
+content: " ";
+vertical-align: middle;
+  border: 10px solid #F00;
+}
+/*
+
+input[type="radio"].couleur1::before{
+  border: 10px solid #FF0;
+}
+
+input[type="radio"].couleur2::before{
+  border: 10px solid #0F0;
+}
+
+input[type="radio"].couleur3::before{
+  border: 10px solid #00F;
+}
+
+input[type="radio"].couleur4::before{
+  border: 10px solid #FFA500;
+}
+
+input[type="radio"].couleur5::before{
+  border: 10px solid #800;
+}
+
+input[type="radio"].couleur6::before{
+  border: 10px solid #800080;
+}
+
+input[type="radio"].couleur7::before{
+  border: 10px solid #F0F;
+}
+
+input[type="radio"].couleur8::before{
   border: 10px solid #F00;
 }
 
-input[type=radio].couleur1:checked:before{
+*/
+
+input[type="radio"].couleur1:checked + label::before{
   background-color: #FF0;
 }
+/*
+input[type="radio"].couleur1:checked:before{
+  background-color: #FF0;
+}*/
 
-input[type=radio].couleur2:checked:before{
+input[type="radio"].couleur2:checked + label::before{
   background-color: #0F0;
 }
 
-input[type=radio].couleur3:checked:before{
+input[type="radio"].couleur3:checked + label::before{
   background-color: #00F;
 }
 
-input[type=radio].couleur4:checked:before{
+input[type="radio"].couleur4:checked + label::before{
   background-color: #FFA500;
 }
 
-input[type=radio].couleur5:checked:before{
+input[type="radio"].couleur5:checked + label::before{
   background-color: #800;
 }
 
-input[type=radio].couleur6:checked:before{
+input[type="radio"].couleur6:checked + label::before{
   background-color: #800080;
 }
 
-input[type=radio].couleur7:checked:before{
+input[type="radio"].couleur7:checked + label::before{
   background-color: #F0F;
 }
 
-input[type=radio].couleur8:checked:before{
+input[type="radio"].couleur8:checked + label::before{
   background-color: #F00;
 }
