@@ -64,21 +64,60 @@
   </div>
   <div class="affichage">
     <table>
-    <?php
-foreach ($_SESSION['partie']->getCoupsJoues() as $coup) {
-  ?>
-    <tr>
-      <td><?php echo $coup[0] ?></td>
-      <td><?php echo $coup[1] ?></td>
-    </tr>
+      <?php
+      foreach ($_SESSION['partie']->getCoupsJoues() as $coup) {
+        ?>
+          <tr>
+            <?php
+            foreach ($coup[0]->getCouleurs() as $couleur) {
+              ?>
+              <td><div class = "circle", style ="background-color :<?php echo $couleur->getHexa();?>"></div></td>
+            <?php } ?>
+            <td>
+              <table>
+                <?php $check = array_map(function($c){return $c->getHexa();},$coup[1]->getCouleurs()); ?>
+                <tr>
+                  <td><div class = "check", style ="background-color :<?php echo $check[0];?>"></div></td>
+                  <td><div class = "check", style ="background-color :<?php echo $check[1];?>"></div></td>
+                </tr>
+                <tr>
+                  <td><div class = "check", style ="background-color :<?php echo $check[2];?>"></div></td>
+                  <td><div class = "check", style ="background-color :<?php echo $check[3];?>"></div></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        <?php
+      }
 
-  <?php
-}
-     ?>
-
-
-</table>
+      for ($i=0; $i < 10 - $_SESSION['partie']->getNbCoups(); $i++) {  ?>
+        <tr>
+          <?php
+          $transp = new Couleur(null);
+          $transp = $transp->getHexa();
+          for ($j=0; $j < 4; $j++) {
+            ?>
+              <td><div class = "circle", style ="background-color :<?php echo $transp;?>; border : 1px solid black;"></div></td>
+            <?php
+          } ?>
+          <td>
+            <table>
+              <tr>
+                <td><div class = "check", style ="background-color :<?php echo $transp; ?>"></div></td>
+                <td><div class = "check", style ="background-color :<?php echo $transp; ?>"></div></td>
+              </tr>
+              <tr>
+                <td><div class = "check", style ="background-color :<?php echo $transp; ?>"></div></td>
+                <td><div class = "check", style ="background-color :<?php echo $transp; ?>"></div></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <?php
+      }
+         ?>
+  </table>
+    </div>
   </div>
-</div>
-</body>
-</html>
+  </body>
+  </html>

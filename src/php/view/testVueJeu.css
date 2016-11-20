@@ -67,6 +67,11 @@ table{
   padding:0;
 }
 
+.affichage table{
+  height: 90%;
+  width: 90%;
+}
+
 tr{
   height:90px;
 }
@@ -100,6 +105,27 @@ tr,input[type=radio]:first-child{
   margin:0;
   background-color: #785;
   float: right;
+}
+
+.affichage tr{
+  height:auto;
+  width: auto;
+}
+
+.circle{
+  width: 25px;
+  height: 25px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.check{
+  width: 12px;
+  height: 12px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  border : 1px solid black;
 }
 
 input[type="radio"].couleur1 + label{
