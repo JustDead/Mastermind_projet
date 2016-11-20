@@ -1,5 +1,5 @@
 <?php
-require_once "Couleur.php";
+require "Couleur.php";
 class Combinaison{
   private $couleurs;
 
