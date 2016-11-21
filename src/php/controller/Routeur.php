@@ -1,49 +1,72 @@
 <?php
 require_once "model/Partie.php";
+require_once "controller/BdController.php";
 class Routeur{
+  private $bd;
 
   function __construct(){
-    // Il n'y a pas de partie en cours
-    if (!isset($_SESSION['partie'])){
-      // Commencer une partie
-      $this->commencerPartie();
-    }
-    elseif (isset($_POST['recommencer'])) {
-      $this->recommencer();
-    }
-    // Une partie est déjà commencée
-    else{ // On rafraîchit la page
-      // La partie est finie (code mort normalement)
-      if ($_SESSION['partie']->getPartieFinie()){
-        // Afficher solution, tableau des scores, demander de rejouer etc
+    $this->bd = new BdController();
+
+    // On est pas loggé
+    if (!isset($_SESSION['joueur'])){
+      // On a rempli le formulaire
+      if ($this->authentifier($_POST['pseudo'], $_POST['psw'])){
+        $_SESSION['joueur'] = $_POST['pseudo'];
+        $this->commencerPartie();
+      } // On n'a pas rempli
+      else{
+        $this->login();
+      }
+  }
+    else{ // on n'était pas au login
+      // Il n'y a pas de partie en cours
+      if (!isset($_SESSION['partie'])){
+        // On se log
+        $this->login();
+      } // On a cliqué sur reset
+      elseif (isset($_POST['recommencer'])) {
         $this->recommencer();
       }
+      // Une partie est déjà commencée et on a tapé f5
       else{
-        // Demander un coup
-        $this->jouer();
+        // La partie est finie (code mort normalement)
+        if ($_SESSION['partie']->getPartieFinie()){
+          $this->recommencer();
+        }
+        else{ // on a f5 en plein tour
+          // Rejoue le dernier ocup (utile pour debug)
+          $this->jouer();
+        }
       }
     }
+  }
 
-
-
-
-
+  function authentifier($pseudo,  $mdp){
+    return true;
   }
 
   function recommencer(){
     unset($_SESSION['partie']);
-    $_SESSION['partie'] = new Partie('Joueur');
-    require "view/testVueJeu.php";
+    $this->commencerPartie();
+  }
+
+  function login(){
+    require "view/testVue.html";
+  }
+
+  function deconnexion(){
+    unset($_SESSION['login']);
+    $this->login();
+  }
+
+  function getHighScores(){
+    return $this->bd->getHighScores();
   }
 
 
   function commencerPartie(){
-    $_SESSION['partie'] = new Partie('Joueur');
-    ?>
-    <form action="TestIndex.php" method="post">
-      <input type="submit" name="new" value="commencer">
-    </form>
-    <?php
+    $_SESSION['partie'] = new Partie($_SESSION['joueur']);
+    require "view/testVueJeu.php";
   }
 
   function jouer(){
@@ -56,22 +79,7 @@ class Routeur{
       $_SESSION['partie']->jouer(new Combinaison($c1,$c2,$c3,$c4));
     }
     // Continuer
-    if (!$_SESSION['partie']->getPartieFinie()){
-      require "view/testVueJeu.php";
-    }
-    else{
-      // Gagner
-      if ($_SESSION['partie']->getPartieGagnee()){
-        require "view/testVueJeu.php";
-
-      }
-      //Perdre
-      else{
-        require "view/testVueJeu.php";
-
-      }
-    }
-
+    require "view/testVueJeu.php";
   }
 
 
