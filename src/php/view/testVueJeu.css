@@ -20,6 +20,7 @@ input[type=submit]{
   border: none;
   border-radius: 5px;
   padding: 15px 25px;
+  margin-top: 2vh;
 
 }
 
@@ -60,26 +61,25 @@ input[type=radio]:before {
 }
 */
 table{
-  margin-left:12%;
+  margin-left:15%;
   margin-top: 1%;
   width: 70%;
   height: 70%;
   padding:0;
 }
-
 .affichage table{
   height: 90%;
   width: 90%;
 }
 
 tr{
-  height:90px;
+  text-align: center;
 }
-
+/*
 tr,input[type=radio]:first-child{
-  margin-left:20%;
+  margin-left:7%;
 }
-
+*/
 .fenetre_jeu {
   padding:0;
   width:70%;
@@ -105,6 +105,7 @@ tr,input[type=radio]:first-child{
   margin:0;
   background-color: #785;
   float: right;
+  text-align: center;
 }
 
 .affichage tr{
@@ -117,41 +118,61 @@ tr,input[type=radio]:first-child{
 }
 
 .circle{
-  width: 25px;
-  height: 25px;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
+  width: 4vh;
+  height: 4vh;
   border-radius: 50%;
 }
 .check{
-  width: 12px;
-  height: 12px;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
+  width: 2vh;
+  height: 2vh;
   border-radius: 50%;
   border : 1px solid black;
 }
 
 .gagnant{
-  width: 30px;
-  height: 30px;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
+  width: 4vh;
+  height: 4vh;
   border-radius: 50%;
   background-color: black;
   color : grey;
+  line-height: 4vh;
+  font-weight: bold;
   text-align: center;
-  padding-top: 10px;
 }
 
-input[type="radio"].couleur1 + label{
-  padding : 4px 0 0 24px;
+
+.resultat {
+  font-size: 4vh;
+  font-weight: bold;
+  font-family: fantasy;
+  margin-top: 2vh;
 }
+
+.titreHS {
+  font-size: 3vh;
+  text-decoration: underline;
+  text-align: center;
+}
+
+
+
+
+
+
+input[type="radio"] + label::before{
+  width : 5vh;
+  height : 5vh;
+  border-radius: 50%;
+  margin-top: 1.5vh;
+}
+
+input[type="radio"] + label{
+  padding: 0;
+}
+
 
 input[type="radio"].couleur1 + label::before{
   display: inline-block;
-width: 20px;
-height: 20px;
 top: 0;
 left: 0;
 content: " ";
@@ -159,14 +180,9 @@ vertical-align: middle;
   border: 10px solid #FF0;
 }
 
-input[type="radio"].couleur2 + label{
-  padding : 4px 0 0 24px;
-}
 
 input[type="radio"].couleur2 + label::before{
   display: inline-block;
-width: 20px;
-height: 20px;
 top: 0;
 left: 0;
 content: " ";
@@ -174,14 +190,9 @@ vertical-align: middle;
   border: 10px solid #0F0;
 }
 
-input[type="radio"].couleur3 + label{
-  padding : 4px 0 0 24px;
-}
 
 input[type="radio"].couleur3 + label::before{
   display: inline-block;
-width: 20px;
-height: 20px;
 top: 0;
 left: 0;
 content: " ";
@@ -189,14 +200,8 @@ vertical-align: middle;
   border: 10px solid #00F;
 }
 
-input[type="radio"].couleur4 + label{
-  padding : 4px 0 0 24px;
-}
-
 input[type="radio"].couleur4 + label::before{
   display: inline-block;
-width: 20px;
-height: 20px;
 top: 0;
 left: 0;
 content: " ";
@@ -204,14 +209,9 @@ vertical-align: middle;
   border: 10px solid #FFA500;
 }
 
-input[type="radio"].couleur5 + label{
-  padding : 4px 0 0 24px;
-}
 
 input[type="radio"].couleur5 + label::before{
   display: inline-block;
-width: 20px;
-height: 20px;
 top: 0;
 left: 0;
 content: " ";
@@ -219,14 +219,9 @@ vertical-align: middle;
   border: 10px solid #800;
 }
 
-input[type="radio"].couleur6 + label{
-  padding : 4px 0 0 24px;
-}
 
 input[type="radio"].couleur6 + label::before{
   display: inline-block;
-width: 20px;
-height: 20px;
 top: 0;
 left: 0;
 content: " ";
@@ -234,14 +229,9 @@ vertical-align: middle;
   border: 10px solid #800080;
 }
 
-input[type="radio"].couleur7 + label{
-  padding : 4px 0 0 24px;
-}
 
 input[type="radio"].couleur7 + label::before{
   display: inline-block;
-width: 20px;
-height: 20px;
 top: 0;
 left: 0;
 content: " ";
@@ -249,20 +239,16 @@ vertical-align: middle;
   border: 10px solid #F0F;
 }
 
-input[type="radio"].couleur8 + label{
-  padding : 4px 0 0 24px;
-}
 
 input[type="radio"].couleur8 + label::before{
   display: inline-block;
-width: 20px;
-height: 20px;
 top: 0;
 left: 0;
 content: " ";
 vertical-align: middle;
   border: 10px solid #F00;
 }
+
 /*
 
 input[type="radio"].couleur1::before{

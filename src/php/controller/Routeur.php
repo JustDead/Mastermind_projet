@@ -8,12 +8,15 @@ class Routeur{
       // Commencer une partie
       $this->commencerPartie();
     }
+    elseif (isset($_POST['recommencer'])) {
+      $this->recommencer();
+    }
     // Une partie est déjà commencée
-    else{
-      // La partie est finie (cod emort normalement)
+    else{ // On rafraîchit la page
+      // La partie est finie (code mort normalement)
       if ($_SESSION['partie']->getPartieFinie()){
         // Afficher solution, tableau des scores, demander de rejouer etc
-        $this->terminerPartie();
+        $this->recommencer();
       }
       else{
         // Demander un coup
@@ -27,21 +30,18 @@ class Routeur{
 
   }
 
+  function recommencer(){
+    unset($_SESSION['partie']);
+    $_SESSION['partie'] = new Partie('Joueur');
+    require "view/testVueJeu.php";
+  }
+
 
   function commencerPartie(){
     $_SESSION['partie'] = new Partie('Joueur');
     ?>
     <form action="TestIndex.php" method="post">
       <input type="submit" name="new" value="commencer">
-    </form>
-    <?php
-  }
-
-  function terminerPartie(){
-    unset($_SESSION['partie']);
-    ?>
-    <form action="TestIndex.php" method="post">
-      <input type="submit" name="new" value="terminer">
     </form>
     <?php
   }
@@ -62,19 +62,14 @@ class Routeur{
     else{
       // Gagner
       if ($_SESSION['partie']->getPartieGagnee()){
-        ?><h1>Gagné !!!</h1>
-        <?php
+        require "view/testVueJeu.php";
 
       }
       //Perdre
       else{
-        ?><h1>Perdu !!!</h1>
-        <?php
+        require "view/testVueJeu.php";
 
       }
-      $this->terminerPartie();
-
-
     }
 
   }

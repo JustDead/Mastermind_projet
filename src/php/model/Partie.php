@@ -39,7 +39,7 @@ class Partie{
     return $this->coups_joues;
   }
 
-  function getcombiGagnante(){
+  function getCombiGagnante(){
     return $this->combinaison_gagnante;
   }
 
