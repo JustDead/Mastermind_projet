@@ -6,16 +6,26 @@ class Routeur{
 
   function __construct(){
     $this->bd = new BdController();
-
+    $_SESSION['inscriptionFlag'] = false;
     // On est pas loggé
     if (!isset($_SESSION['joueur'])){
-      // On a rempli le formulaire
-      if ($this->authentifier($_POST['pseudo'], $_POST['psw'])){
-        $_SESSION['joueur'] = $_POST['pseudo'];
-        $this->commencerPartie();
-      } // On n'a pas rempli
+      if(isset($_POST['Enregistrer'])){ // On a essayé de s'inscrire
+        // Vérifier pseudo pris
+        $this->inscrire($_POST['pseudo'],$_POST['psw']);
+      }
       else{
-        $this->login();
+        if(isset($_POST['pseudo'], $_POST['psw'])){ // On a envoyé des données
+          if ($this->authentifier($_POST['pseudo'], $_POST['psw'])){
+            $_SESSION['joueur'] = $_POST['pseudo'];
+            $this->commencerPartie();
+          } // On n'a pas rempli
+          else{ // proposer de s'inscrire
+            $this->login();
+          }
+        }
+        else {
+          $this->login();
+        }
       }
   }
     else{ // on n'était pas au login
@@ -26,6 +36,9 @@ class Routeur{
       } // On a cliqué sur reset
       elseif (isset($_POST['recommencer'])) {
         $this->recommencer();
+      }
+      elseif (isset($_POST['enregistrer'])) {
+        $this->inscrire($_POST['pseudoEnr'],$_POST['pswEnr']);
       }
       // Une partie est déjà commencée et on a tapé f5
       else{
@@ -42,7 +55,7 @@ class Routeur{
   }
 
   function authentifier($pseudo,  $mdp){
-    return true;
+    return $this->bd->authentifier($pseudo, $mdp);
   }
 
   function recommencer(){
@@ -53,6 +66,18 @@ class Routeur{
   function login(){
     require "view/testVue.html";
   }
+
+  function inscrire($pseudo,$psw){
+    if($this->bd->inscrire($pseudo,$psw)){
+      $this->login();
+    }
+    else{
+      $_SESSION['inscriptionFlag'] = true;
+      require "view/Inscription.php";
+    }
+
+  }
+
 
   function deconnexion(){
     unset($_SESSION['login']);

@@ -54,5 +54,9 @@ class Partie{
   function getNbCoups(){
     return $this->compteur_coups;
   }
+
+  function getPseudoJoueur(){
+    return $this->joueur;
+  }
 }
 ?>
