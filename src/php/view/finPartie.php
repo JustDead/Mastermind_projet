@@ -17,12 +17,13 @@
       </th>
     </tr>
     <?php
+    $i =1;
     foreach ($this->getHighScores() as $score) {
       ?>
       <tr>
-          <td><?php echo $score[0] ?></td>
-          <td><?php echo $score[1] ?></td>
-          <td><?php echo $score[2] ?></td>
+          <td><?php echo $i ; $i++?></td>
+          <td><?php echo $score['pseudo'] ?></td>
+          <td><?php echo $score['nombreCoups'] ?></td>
       </tr>
       <?php
     }

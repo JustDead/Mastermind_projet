@@ -5,23 +5,32 @@ class BdController{
   private $bd;
 
   function __construct(){
-    //$this->bd = new BaseDonnees();
+    $this->bd = new BaseDonnees();
   }
 
   function getPseudos(){
-
+    return $this->bd->getPseudos();
   }
 
   function exists($pseudo){
+    return $this->bd->exists($pseudo);
+  }
 
+  function inscrireJoueur($pseudo,$psw){
+    return $this->bd->inscrireJoueur($pseudo, $psw);
   }
 
   function authentifier($pseudo,$mdp){
-
+      $resultatMDP = $this->bd->getMdp($pseudo);
+      return crypt($mdp,$resultatMDP)==$resultatMDP;
   }
 
   function getHighScores(){
-    return array(array(1,"zbeub",1),array(2,'miskine',5),array(3,'jisepas',10));
+    return $this->bd->getHighScores();
+  }
+
+  function rentrerScore($partie){
+    $this->bd->majParties($partie);
   }
 }
  ?>

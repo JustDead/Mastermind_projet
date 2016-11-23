@@ -56,10 +56,6 @@ public function deconnexion(){
 }
 
 
-public function getHighScores(){
-  
-}
-
 //A développer
 // utiliser une requête classique
 // méthode qui permet de récupérer les pseudos dans la table pseudo
@@ -70,7 +66,7 @@ public function getHighScores(){
 public function getPseudos(){
  try{
 
-$statement=$this->connexion->query("SELECT pseudo from pseudonyme;");
+$statement=$this->connexion->query("SELECT pseudo from joueurs;");
 
 while($ligne=$statement->fetch()){
 $result[]=$ligne['pseudo'];
@@ -78,7 +74,7 @@ $result[]=$ligne['pseudo'];
 return($result);
 }
 catch(PDOException $e){
-    throw new TableAccesException("problème avec la table pseudonyme");
+    throw new TableAccesException("problème avec la table joueurs");
   }
 }
 
@@ -91,13 +87,13 @@ catch(PDOException $e){
 // si un problème est rencontré, une exception de type TableAccesException est levée
 public function exists($pseudo){
 try{
-	$statement = $this->connexion->prepare("select id from pseudonyme where pseudo=?;");
+	$statement = $this->connexion->prepare("select pseudo from joueurs where pseudo=?;");
 	$statement->bindParam(1, $pseudoParam);
 	$pseudoParam=$pseudo;
 	$statement->execute();
 	$result=$statement->fetch(PDO::FETCH_ASSOC);
 
-	if ($result["id"]!=NUll){
+	if ($result["pseudo"]!=null){
 	return true;
 	}
 	else{
@@ -106,8 +102,43 @@ try{
 }
 catch(PDOException $e){
     $this->deconnexion();
-    throw new TableAccesException("problème avec la table pseudonyme");
+    throw new TableAccesException("problème avec la table joueurs");
     }
+}
+
+public function getMdp($pseudo){
+try{
+	$statement = $this->connexion->prepare("select motDePasse from joueurs where pseudo=?;");
+	$statement->bindParam(1, $pseudoParam);
+	$pseudoParam=$pseudo;
+	$statement->execute();
+	$result=$statement->fetch(PDO::FETCH_ASSOC);
+
+	return $result["motDePasse"];
+	}
+catch(PDOException $e){
+    $this->deconnexion();
+    throw new TableAccesException("problème avec la table joueurs");
+    }
+}
+
+public function inscrireJoueur($pseudo, $psw){
+  if ($this->exists($pseudo)){ // Pseudo déjà dedans
+    return false;
+  }
+  else{
+    try{
+$statement = $this->connexion->prepare("INSERT INTO joueurs (pseudo, motDePasse) VALUES (?,?);");
+$statement->bindParam(1, $pseudo);
+$statement->bindParam(2, crypt($pseudo));
+$statement->execute();
+
+}
+  catch(PDOException $e){
+  $this->deconnexion();
+  throw new TableAccesException("problème avec la table joueurs");
+  }
+  }
 }
 
 
@@ -119,23 +150,18 @@ catch(PDOException $e){
 // post-condition: le message est ajouté dans la table salon
 // si un problème est rencontré, une exception de type TableAccesException est levée
 
-public function majSalon($pseudo,$message){
+public function majParties($partie){
       try{
-
-      $statement = $this->connexion->prepare("select id from pseudonyme where pseudo=?;");
-	$statement->bindParam(1, $pseudoParam);
-	$pseudoParam=$pseudo;
-	$statement->execute();
-	$result=$statement->fetch(PDO::FETCH_ASSOC);
-	$statement = $this->connexion->prepare("INSERT INTO salon (idpseudo, message) VALUES (?,?);");
-	$statement->bindParam(1, $result['id']);
-	$statement->bindParam(2, $message);
+	$statement = $this->connexion->prepare("INSERT INTO parties (pseudo, partieGagnee, nombreCoups) VALUES (?,?,?);");
+	$statement->bindParam(1, $partie->getPseudoJoueur());
+	$statement->bindParam(2, $partie->getPartieGagnee());
+  $statement->bindParam(3, $partie->getNbCoups());
 	$statement->execute();
 
 	}
     catch(PDOException $e){
     $this->deconnexion();
-    throw new TableAccesException("problème avec la table salon");
+    throw new TableAccesException("problème avec la table parties");
     }
 }
 
@@ -153,17 +179,16 @@ public function majSalon($pseudo,$message){
 // le second indice est une chaine de caractère qui correspond au nom de la colonne dans la table
 // si un problème est rencontré, une exception de type TableAccesException est levée
 
-public function get10RecentMessage(){
+public function getHighScores(){
 
       try{
 
-$statement=$this->connexion->query("SELECT pseudonyme.pseudo ,salon.message FROM salon, pseudonyme where salon.idpseudo=pseudonyme.id ORDER BY salon.id DESC LIMIT 0, 10;");
+$statement=$this->connexion->query("SELECT joueurs.pseudo,nombreCoups FROM joueurs, parties where joueurs.pseudo=parties.pseudo and parties.partieGagnee=1 ORDER BY parties.nombreCoups ASC LIMIT 0, 5;");
 	return($statement->fetchAll(PDO::FETCH_ASSOC));
-
     }
   catch(PDOException $e){
     $this->deconnexion();
-    throw new TableAccesException("problème avec la table salon");
+    throw new TableAccesException("problème avec la table parties");
   }
 }
 

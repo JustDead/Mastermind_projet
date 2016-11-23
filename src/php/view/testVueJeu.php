@@ -6,6 +6,9 @@
 <link rel="stylesheet" href="view/testVueJeu.css" type="text/css" />
 </head>
 <body>
+  <form action="TestIndex.php" method="post">
+    <input type="submit" name="deco" value="Deconnexion">
+  </form>
 <div class="fenetre_jeu">
   <div class="fenetre_joueur">
     <?php

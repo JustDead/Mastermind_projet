@@ -1,4 +1,5 @@
 <?php
+		
 // On teste les fonctionnalités apportées
 require_once "../model/Partie.php";
 
