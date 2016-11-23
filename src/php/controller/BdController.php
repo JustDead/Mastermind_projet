@@ -16,6 +16,7 @@ class BdController{
     return $this->bd->exists($pseudo);
   }
 
+<<<<<<< HEAD
   function inscrireJoueur($pseudo,$psw){
     return $this->bd->inscrireJoueur($pseudo, $psw);
   }
@@ -31,6 +32,23 @@ class BdController{
 
   function rentrerScore($partie){
     $this->bd->majParties($partie);
+=======
+  function inscription($pseudo,$psw){
+    return $this->bd->inscrireJoueur();
+  }
+
+  function authentifier($pseudo,$mdp){
+    // SI on trouve
+//    if $this->bd->ex
+      // Si mdp crypté match
+      if(crypt($mdp,$resultatMDP)==$resultatMDP){
+        return true;
+      }
+  }
+
+  function getHighScores(){
+    return array(array(1,"zbeub",1),array(2,'miskine',5),array(3,'jisepas',10),array(4,'jisepas',10),array(5,'jisepas',10));
+>>>>>>> df46bac3f391f18ca3272c045528c8b5525a9f47
   }
 }
  ?>

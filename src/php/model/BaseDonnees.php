@@ -87,7 +87,11 @@ catch(PDOException $e){
 // si un problème est rencontré, une exception de type TableAccesException est levée
 public function exists($pseudo){
 try{
+<<<<<<< HEAD
 	$statement = $this->connexion->prepare("select pseudo from joueurs where pseudo=?;");
+=======
+	$statement = $this->connexion->prepare("select id from joueurs where pseudo=?;");
+>>>>>>> df46bac3f391f18ca3272c045528c8b5525a9f47
 	$statement->bindParam(1, $pseudoParam);
 	$pseudoParam=$pseudo;
 	$statement->execute();
@@ -103,6 +107,7 @@ try{
 catch(PDOException $e){
     $this->deconnexion();
     throw new TableAccesException("problème avec la table joueurs");
+<<<<<<< HEAD
     }
 }
 
@@ -119,6 +124,8 @@ try{
 catch(PDOException $e){
     $this->deconnexion();
     throw new TableAccesException("problème avec la table joueurs");
+=======
+>>>>>>> df46bac3f391f18ca3272c045528c8b5525a9f47
     }
 }
 
@@ -183,7 +190,11 @@ public function getHighScores(){
 
       try{
 
+<<<<<<< HEAD
 $statement=$this->connexion->query("SELECT joueurs.pseudo,nombreCoups FROM joueurs, parties where joueurs.pseudo=parties.pseudo and parties.partieGagnee=1 ORDER BY parties.nombreCoups ASC LIMIT 0, 5;");
+=======
+$statement=$this->connexion->query("SELECT joueurs.pseudo ,parties.nombreCoups FROM salon, pseudonyme where salon.idpseudo=pseudonyme.id ORDER BY salon.id DESC LIMIT 0, 10;");
+>>>>>>> df46bac3f391f18ca3272c045528c8b5525a9f47
 	return($statement->fetchAll(PDO::FETCH_ASSOC));
     }
   catch(PDOException $e){

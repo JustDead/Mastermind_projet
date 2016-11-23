@@ -6,9 +6,12 @@
 <link rel="stylesheet" href="view/testVue.css" type="text/css" />
 </head>
 <body>
+<<<<<<< HEAD
   <form action="TestIndex.php" method="post">
     <input type="submit" name="login" value="login">
   </form>
+=======
+>>>>>>> df46bac3f391f18ca3272c045528c8b5525a9f47
 <div class="fenetre_jeu">
   <div class="fenetre_auth">
     <div class="auth">
@@ -16,9 +19,16 @@
           <p class="texte"
           <?php if ($_SESSION['inscriptionFlag']) {
             ?>
+<<<<<<< HEAD
             placeholder = "Attention, pseudo déjà pris"
             <?php
           } ?>
+=======
+            placeholder = 'Attention, pseudo déjà pris'
+            <?php
+          } ?>
+
+>>>>>>> df46bac3f391f18ca3272c045528c8b5525a9f47
           >Pseudo</p>
           <input type="text" name="pseudoEnr"/>
           <br />

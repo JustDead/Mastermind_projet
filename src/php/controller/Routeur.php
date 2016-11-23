@@ -9,9 +9,15 @@ class Routeur{
     $_SESSION['inscriptionFlag'] = false;
     // On est pas loggé
     if (!isset($_SESSION['joueur'])){
+<<<<<<< HEAD
       if(isset($_POST['enregistrer'])){ // On a essayé de s'inscrire
         // Vérifier pseudo pris
         $this->inscrireJoueur($_POST['pseudoEnr'],$_POST['pswEnr']);
+=======
+      if(isset($_POST['Enregistrer'])){ // On a essayé de s'inscrire
+        // Vérifier pseudo pris
+        $this->inscrire($_POST['pseudo'],$_POST['psw']);
+>>>>>>> df46bac3f391f18ca3272c045528c8b5525a9f47
       }
       else{
         if(isset($_POST['pseudo'], $_POST['psw'])){ // On a envoyé des données
@@ -20,7 +26,11 @@ class Routeur{
             $this->commencerPartie();
           } // On n'a pas rempli
           else{ // proposer de s'inscrire
+<<<<<<< HEAD
             require 'view/Inscription.php';
+=======
+            $this->login();
+>>>>>>> df46bac3f391f18ca3272c045528c8b5525a9f47
           }
         }
         else {
@@ -43,7 +53,14 @@ class Routeur{
       elseif (isset($_POST['deco'])) {
         $this->deconnecter();
       }
+<<<<<<< HEAD
       // Une partie est déjà commencée
+=======
+      elseif (isset($_POST['enregistrer'])) {
+        $this->inscrire($_POST['pseudoEnr'],$_POST['pswEnr']);
+      }
+      // Une partie est déjà commencée et on a tapé f5
+>>>>>>> df46bac3f391f18ca3272c045528c8b5525a9f47
       else{
         // La partie est finie (code mort normalement)
         if ($_SESSION['partie']->getPartieFinie()){
@@ -70,6 +87,7 @@ class Routeur{
     require "view/testVue.html";
   }
 
+<<<<<<< HEAD
   function deconnecter(){
     unset($_SESSION['partie'],$_SESSION['joueur']);
     $this->login();
@@ -77,6 +95,10 @@ class Routeur{
 
   function inscrireJoueur($pseudo,$psw){
     if($this->bd->inscrireJoueur($pseudo,$psw)){
+=======
+  function inscrire($pseudo,$psw){
+    if($this->bd->inscrire($pseudo,$psw)){
+>>>>>>> df46bac3f391f18ca3272c045528c8b5525a9f47
       $this->login();
     }
     else{
