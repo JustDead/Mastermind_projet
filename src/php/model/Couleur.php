@@ -23,35 +23,35 @@ class Couleur{
       // Les couleurs sont attribuées arbitrairement
       case 1:
         $this->nom = 'jaune';
-        $this->hexa = '#FF0';
+        $this->hexa = '#FFD911';
         break;
       case 2:
         $this->nom = 'vert';
-        $this->hexa = '#0F0';
+        $this->hexa = '#75BB17';
         break;
       case 3:
-        $this->nom = 'bleu';
-        $this->hexa = '#00F';
+        $this->nom = 'cyan';
+        $this->hexa = '#088C7A';
         break;
       case 4:
-        $this->nom = 'orange';
-        $this->hexa = '#FFA500';
+        $this->nom = 'bleu';
+        $this->hexa = '#182CA2';
         break;
       case 5:
-        $this->nom = 'marron';
-        $this->hexa = '#800';
+        $this->nom = 'violet';
+        $this->hexa = '#6E0E94';
         break;
       case 6:
-        $this->nom = 'violet';
-        $this->hexa = '#800080';
+        $this->nom = 'magenta';
+        $this->hexa = '#AE0A71';
         break;
       case 7:
-        $this->nom = 'fuschia';
-        $this->hexa = '#F0F';
+        $this->nom = 'bordeaux';
+        $this->hexa = '#66001D';
         break;
       case 8:
-        $this->nom = 'rouge';
-        $this->hexa = '#F00';
+        $this->nom = 'orange';
+        $this->hexa = '#DF7C00';
         break;
       // Rien n'est correct, on affiche du transparent car c'est vide
       default:

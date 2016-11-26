@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <title>Mastermind</title>
-<link rel="stylesheet" href="view/testVueJeu.css" type="text/css" />
+<link rel="stylesheet" href="view/VueJeu.css" type="text/css" />
 </head>
 <body>
-  <form action="TestIndex.php" method="post">
-    <input type="submit" name="deco" value="Deconnexion">
+  <form action="index.php" method="post">
+    <input type="submit" name="deco" value="Deconnexion" class="deconnexion">
   </form>
 <div class="fenetre_jeu">
   <div class="fenetre_joueur">
@@ -93,8 +93,8 @@
       </tr>
 
   </table>
-  <form action="TestIndex.php" method="post">
-    <input type="submit" name="recommencer" value="Reset"/>
+  <form action="index.php" method="post">
+    <input type="submit" name="recommencer" value="Reset" class="soumettre"/>
   </form>
   </form>
     </div>

@@ -1,6 +1,6 @@
 <?php
-require_once "model/Partie.php";
-require_once "controller/BdController.php";
+require_once  __DIR__ . "/../model/Partie.php";
+require_once  __DIR__ . "/BdController.php";
 class Routeur{
   private $bd;
 
@@ -9,15 +9,9 @@ class Routeur{
     $_SESSION['inscriptionFlag'] = false;
     // On est pas loggé
     if (!isset($_SESSION['joueur'])){
-<<<<<<< HEAD
       if(isset($_POST['enregistrer'])){ // On a essayé de s'inscrire
         // Vérifier pseudo pris
         $this->inscrireJoueur($_POST['pseudoEnr'],$_POST['pswEnr']);
-=======
-      if(isset($_POST['Enregistrer'])){ // On a essayé de s'inscrire
-        // Vérifier pseudo pris
-        $this->inscrire($_POST['pseudo'],$_POST['psw']);
->>>>>>> df46bac3f391f18ca3272c045528c8b5525a9f47
       }
       else{
         if(isset($_POST['pseudo'], $_POST['psw'])){ // On a envoyé des données
@@ -26,11 +20,7 @@ class Routeur{
             $this->commencerPartie();
           } // On n'a pas rempli
           else{ // proposer de s'inscrire
-<<<<<<< HEAD
-            require 'view/Inscription.php';
-=======
-            $this->login();
->>>>>>> df46bac3f391f18ca3272c045528c8b5525a9f47
+            require  __DIR__ . "/../view/Inscription.php";
           }
         }
         else {
@@ -53,21 +43,13 @@ class Routeur{
       elseif (isset($_POST['deco'])) {
         $this->deconnecter();
       }
-<<<<<<< HEAD
       // Une partie est déjà commencée
-=======
-      elseif (isset($_POST['enregistrer'])) {
-        $this->inscrire($_POST['pseudoEnr'],$_POST['pswEnr']);
-      }
-      // Une partie est déjà commencée et on a tapé f5
->>>>>>> df46bac3f391f18ca3272c045528c8b5525a9f47
       else{
         // La partie est finie (code mort normalement)
         if ($_SESSION['partie']->getPartieFinie()){
           $this->recommencer();
         }
-        else{ // on a f5 en plein tour
-          // Rejoue le dernier ocup (utile pour debug)
+        else{ // on a joué ou appuyé sur f5
           $this->jouer();
         }
       }
@@ -84,10 +66,9 @@ class Routeur{
   }
 
   function login(){
-    require "view/testVue.html";
+    require  __DIR__ . "/../view/Vue.html";
   }
 
-<<<<<<< HEAD
   function deconnecter(){
     unset($_SESSION['partie'],$_SESSION['joueur']);
     $this->login();
@@ -95,15 +76,11 @@ class Routeur{
 
   function inscrireJoueur($pseudo,$psw){
     if($this->bd->inscrireJoueur($pseudo,$psw)){
-=======
-  function inscrire($pseudo,$psw){
-    if($this->bd->inscrire($pseudo,$psw)){
->>>>>>> df46bac3f391f18ca3272c045528c8b5525a9f47
       $this->login();
     }
     else{
       $_SESSION['inscriptionFlag'] = true;
-      require "view/Inscription.php";
+      require  __DIR__ . "/../view/Inscription.php";
     }
 
   }
@@ -121,7 +98,7 @@ class Routeur{
 
   function commencerPartie(){
     $_SESSION['partie'] = new Partie($_SESSION['joueur']);
-    require "view/testVueJeu.php";
+    require  __DIR__ . "/../view/VueJeu.php";
   }
 
   function jouer(){
@@ -132,13 +109,15 @@ class Routeur{
       $c4 = new Couleur($_POST["color4"]);
 
       $_SESSION['partie']->jouer(new Combinaison($c1,$c2,$c3,$c4));
+
     }
+
     // Si on a fini on enregistre le score
     if($_SESSION['partie']->getPartieFinie()){
       $this->bd->rentrerScore($_SESSION['partie']);
     }
     // Continuer
-    require "view/testVueJeu.php";
+    require  __DIR__ . "/../view/VueJeu.php";
   }
 
 

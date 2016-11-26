@@ -1,0 +1,276 @@
+html {
+  margin : 0;
+  padding: 0;
+  width: 100%;
+  height : 100%;
+}
+
+body{
+  margin :0;
+  padding :0;
+  width:100%;
+  height:100%;
+  background-color: #888;
+}
+
+input[type=submit]{
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 25px;
+  margin-top: 2vh;
+  border: 1px solid #444;
+
+}
+
+input[type=submit]:hover{
+  color: white;
+  font-weight: bold;
+  border:none;
+}
+
+
+.deconnexion{
+  background-color: #00008B;
+  margin : 0px 0px 0px 5vh;
+  float : left;
+  height: 10vh;
+}
+
+.soumettre{
+  background-color: #181;
+}
+
+.deconnexion:hover{
+  background-color: #0AB;
+}
+
+.soumettre:hover{
+  background-color: #1A1;
+}
+
+
+
+input[type="radio"] {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+
+table{
+  margin-left:15%;
+  margin-top: 1%;
+  width: 70%;
+  height: 70%;
+  padding:0;
+}
+.affichage table{
+  height: 90%;
+  width: 90%;
+}
+
+tr{
+  text-align: center;
+}
+
+.fenetre_jeu {
+  padding:0;
+  width:70%;
+  height: 85%;
+  margin-left: 15%;
+  margin-top: 3%;
+  display: flex;
+  border: 2px solid #444;
+}
+
+.fenetre_joueur{
+  width:50%;
+  height:100%;
+  margin:0;
+  padding: 0;
+  background-color: #643;
+  float: left;
+  text-align: center;
+}
+
+.affichage{
+  width:50%;
+  height:100%;
+  margin:0;
+  background-color: #785;
+  float: right;
+  text-align: center;
+}
+
+.affichage tr{
+  height:auto;
+  width: auto;
+}
+
+.affichage td table {
+  width: 50%;
+}
+
+.circle{
+  width: 4vh;
+  height: 4vh;
+  border-radius: 50%;
+}
+.check{
+  width: 2vh;
+  height: 2vh;
+  border-radius: 50%;
+  border : 1px solid black;
+}
+
+.gagnant{
+  width: 4vh;
+  height: 4vh;
+  border-radius: 50%;
+  background-color: black;
+  color : grey;
+  line-height: 4vh;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+.resultat {
+  font-size: 4vh;
+  font-weight: bold;
+  font-family: fantasy;
+  margin-top: 2vh;
+}
+
+.titreHS {
+  font-size: 3vh;
+  text-decoration: underline;
+  text-align: center;
+}
+
+
+input[type="radio"] + label{
+  width : 5vh;
+  height : 5vh;
+  border-radius: 50%;
+  margin-top: 1.5vh;
+}
+
+input[type="radio"] + label{
+  padding: 0;
+}
+
+
+input[type="radio"].couleur1 + label{
+  display: inline-block;
+top: 0;
+left: 0;
+content: " ";
+vertical-align: middle;
+  border: 10px solid #FFD911;
+}
+
+
+input[type="radio"].couleur2 + label{
+  display: inline-block;
+top: 0;
+left: 0;
+content: " ";
+vertical-align: middle;
+  border: 10px solid #75BB17;
+}
+
+
+input[type="radio"].couleur3 + label{
+  display: inline-block;
+top: 0;
+left: 0;
+content: " ";
+vertical-align: middle;
+  border: 10px solid #088C7A;
+}
+
+input[type="radio"].couleur4 + label{
+  display: inline-block;
+top: 0;
+left: 0;
+content: " ";
+vertical-align: middle;
+  border: 10px solid #182CA2;
+}
+
+
+input[type="radio"].couleur5 + label{
+  display: inline-block;
+top: 0;
+left: 0;
+content: " ";
+vertical-align: middle;
+  border: 10px solid #6E0E94;
+}
+
+
+input[type="radio"].couleur6 + label{
+  display: inline-block;
+top: 0;
+left: 0;
+content: " ";
+vertical-align: middle;
+  border: 10px solid #AE0A71;
+}
+
+
+input[type="radio"].couleur7 + label{
+  display: inline-block;
+top: 0;
+left: 0;
+content: " ";
+vertical-align: middle;
+  border: 10px solid #66001D;
+}
+
+
+input[type="radio"].couleur8 + label{
+  display: inline-block;
+top: 0;
+left: 0;
+content: " ";
+vertical-align: middle;
+  border: 10px solid #DF7C00;
+}
+
+input[type="radio"].couleur1:checked + label{
+  background-color: #FFD911;
+}
+
+input[type="radio"].couleur2:checked + label{
+  background-color: #75BB17;
+}
+
+input[type="radio"].couleur3:checked + label{
+  background-color: #088C7A;
+}
+
+input[type="radio"].couleur4:checked + label{
+  background-color: #182CA2;
+}
+
+input[type="radio"].couleur5:checked + label{
+  background-color: #6E0E94;
+}
+
+input[type="radio"].couleur6:checked + label{
+  background-color: #AE0A71;
+}
+
+input[type="radio"].couleur7:checked + label{
+  background-color: #66001D;
+}
+
+input[type="radio"].couleur8:checked + label{
+  background-color: #DF7C00;
+}

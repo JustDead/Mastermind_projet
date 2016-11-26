@@ -1,5 +1,5 @@
 <?php
-		
+
 // On teste les fonctionnalités apportées
 require_once "../model/Partie.php";
 
@@ -59,5 +59,8 @@ echo $partie->getPartieFinie() ? 'fini' : 'en cours' ;
 echo $partie->getPartieGagnee() ? 'gg' : 'loser';
 
 */
-
+require_once "../model/BaseDonnees.php";
+$bd = new BaseDonnees();
+$res = $bd->getStatsJoueur("titi");
+echo var_dump($res);
 ?>

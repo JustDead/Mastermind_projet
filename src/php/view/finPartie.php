@@ -28,4 +28,13 @@
       <?php
     }
     ?>
+    <tr><td><label class ="titreHS">Vos stats</label></td></tr>
+    <tr>
+      <th>Ratio de victoires</th>
+      <th>Nombre de coups moyens pour gagner</th>
+    </tr>
+    <tr>
+      <td><?php echo $this->bd->getStatsJoueur($_SESSION['joueur'])[0]; ?>%</td>
+      <td><?php echo $this->bd->getStatsJoueur($_SESSION['joueur'])[1]; ?></td>
+    </tr>
   </table>

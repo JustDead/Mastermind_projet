@@ -1,5 +1,5 @@
 <?php
-require "Couleur.php";
+require_once  __DIR__ . "/Couleur.php";
 class Combinaison{
   private $couleurs;
 
@@ -24,25 +24,9 @@ class Combinaison{
     $compte_Essai = array_count_values($essai);
     foreach ($compte_Gagnant as $couleur => $nb) {
       if (isset($compte_Essai[$couleur])){
-        $nb_Essai = $compte_Essai[$couleur];
-        $tmp = $nb-$nb_Essai;
-        // C'est bon, on ajoute les occurences de la couleur
-        if ($tmp==0){
-          for ($i=0; $i < $nb; $i++) {
-            array_push($check, new Couleur(-1));
-          }
-        }
-        // Il y a plus d'occurences chez le gagnant que l'essai
-        elseif ($tmp>0 && $nb_Essai>0) {
-          for ($i=0; $i < $nb_Essai; $i++) {
-            array_push($check, new Couleur(-1));
-          }
-        }
-        // Il y a plus d'occurences chez l'essai que chez le gagnant
-        elseif ($tmp<0) {
-          for ($i=0; $i < $nb; $i++) {
-            array_push($check, new Couleur(-1));
-          }
+        //  On ajoute le nombre de pions blancs adapté
+        for ($i=0; $i < min($nb,$compte_Essai[$couleur]); $i++) {
+          array_push($check, new Couleur(-1));
         }
       }
     }

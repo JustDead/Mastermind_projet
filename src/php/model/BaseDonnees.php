@@ -87,11 +87,7 @@ catch(PDOException $e){
 // si un problème est rencontré, une exception de type TableAccesException est levée
 public function exists($pseudo){
 try{
-<<<<<<< HEAD
 	$statement = $this->connexion->prepare("select pseudo from joueurs where pseudo=?;");
-=======
-	$statement = $this->connexion->prepare("select id from joueurs where pseudo=?;");
->>>>>>> df46bac3f391f18ca3272c045528c8b5525a9f47
 	$statement->bindParam(1, $pseudoParam);
 	$pseudoParam=$pseudo;
 	$statement->execute();
@@ -107,7 +103,6 @@ try{
 catch(PDOException $e){
     $this->deconnexion();
     throw new TableAccesException("problème avec la table joueurs");
-<<<<<<< HEAD
     }
 }
 
@@ -119,13 +114,11 @@ try{
 	$statement->execute();
 	$result=$statement->fetch(PDO::FETCH_ASSOC);
 
-	return $result["motDePasse"];
+	return $result['motDePasse'];
 	}
 catch(PDOException $e){
     $this->deconnexion();
     throw new TableAccesException("problème avec la table joueurs");
-=======
->>>>>>> df46bac3f391f18ca3272c045528c8b5525a9f47
     }
 }
 
@@ -135,18 +128,49 @@ public function inscrireJoueur($pseudo, $psw){
   }
   else{
     try{
-$statement = $this->connexion->prepare("INSERT INTO joueurs (pseudo, motDePasse) VALUES (?,?);");
-$statement->bindParam(1, $pseudo);
-$statement->bindParam(2, crypt($pseudo));
-$statement->execute();
+      $statement = $this->connexion->prepare("INSERT INTO joueurs (pseudo, motDePasse) VALUES (?,?);");
+      $statement->bindParam(1, $pseudo);
+      $statement->bindParam(2, crypt($pseudo));
+      $statement->execute();
+      return true;
+    }
+    catch(PDOException $e){
+      $this->deconnexion();
+      throw new TableAccesException("problème avec la table joueurs");
+      return false;
+    }
+  }
+}
 
-}
+function getStatsJoueur($pseudo){
+  try{
+    $statement = $this->connexion->prepare("select sum(partieGagnee) from parties where pseudo=? and partieGagnee=1;");
+    $statement->bindParam(1, $pseudoParam);
+    $pseudoParam=$pseudo;
+    $statement->execute();
+    $result=$statement->fetch(PDO::FETCH_ASSOC);
+
+    $statement2 = $this->connexion->prepare("select count(*) from parties where pseudo=?;");
+    $statement2->bindParam(1, $pseudoParam);
+    $pseudoParam=$pseudo;
+    $statement2->execute();
+    $result2=$statement2->fetch(PDO::FETCH_ASSOC);
+
+    $statement3 = $this->connexion->prepare("select sum(nombreCoups) from parties where pseudo=? and partieGagnee=1;");
+    $statement3->bindParam(1, $pseudoParam);
+    $pseudoParam=$pseudo;
+    $statement3->execute();
+    $result3=$statement3->fetch(PDO::FETCH_ASSOC);
+
+    return array($result['sum(partieGagnee)'],$result2['count(*)'],$result3['sum(nombreCoups)']);
+
+  }
   catch(PDOException $e){
-  $this->deconnexion();
-  throw new TableAccesException("problème avec la table joueurs");
-  }
+    $this->deconnexion();
+    throw new TableAccesException("problème avec la table parties");
   }
 }
+
 
 
 
@@ -190,11 +214,7 @@ public function getHighScores(){
 
       try{
 
-<<<<<<< HEAD
 $statement=$this->connexion->query("SELECT joueurs.pseudo,nombreCoups FROM joueurs, parties where joueurs.pseudo=parties.pseudo and parties.partieGagnee=1 ORDER BY parties.nombreCoups ASC LIMIT 0, 5;");
-=======
-$statement=$this->connexion->query("SELECT joueurs.pseudo ,parties.nombreCoups FROM salon, pseudonyme where salon.idpseudo=pseudonyme.id ORDER BY salon.id DESC LIMIT 0, 10;");
->>>>>>> df46bac3f391f18ca3272c045528c8b5525a9f47
 	return($statement->fetchAll(PDO::FETCH_ASSOC));
     }
   catch(PDOException $e){

@@ -1,5 +1,5 @@
 <?php
-require_once "model/BaseDonnees.php";
+require_once __DIR__ . "/../model/BaseDonnees.php";
 
 class BdController{
   private $bd;
@@ -16,7 +16,6 @@ class BdController{
     return $this->bd->exists($pseudo);
   }
 
-<<<<<<< HEAD
   function inscrireJoueur($pseudo,$psw){
     return $this->bd->inscrireJoueur($pseudo, $psw);
   }
@@ -32,23 +31,13 @@ class BdController{
 
   function rentrerScore($partie){
     $this->bd->majParties($partie);
-=======
-  function inscription($pseudo,$psw){
-    return $this->bd->inscrireJoueur();
   }
 
-  function authentifier($pseudo,$mdp){
-    // SI on trouve
-//    if $this->bd->ex
-      // Si mdp crypté match
-      if(crypt($mdp,$resultatMDP)==$resultatMDP){
-        return true;
-      }
-  }
-
-  function getHighScores(){
-    return array(array(1,"zbeub",1),array(2,'miskine',5),array(3,'jisepas',10),array(4,'jisepas',10),array(5,'jisepas',10));
->>>>>>> df46bac3f391f18ca3272c045528c8b5525a9f47
+  function getStatsJoueur($pseudo){ // 0 : nb parties gagnées 1: nb parties jouées 2: nb coups dans parties gagnées
+    $stats = $this->bd->getStatsJoueur($pseudo);
+    $winRate = round($stats[0]/$stats[1]*100);
+    $coupsMoy = round($stats[2]/$stats[0]);
+    return array($winRate,$coupsMoy);
   }
 }
  ?>

@@ -61,7 +61,3 @@ input[type=submit]:hover{
   font-weight: bold;
   margin:0;
 }
-
-.texte + placeholder{
-  color: red;
-}
