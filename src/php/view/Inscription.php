@@ -15,9 +15,12 @@
       <form method="post" action="index.php">
           <p class="texte">Pseudo</p>
           <input type="text" name="pseudoEnr"
-          <?php if ($_SESSION['inscriptionFlag']) {
-            echo 'placeholder = "Pseudo déjà pris"';
-          } ?>
+          <?php
+          $placeHolder = $_SESSION['inscriptionFlag'] == -1 ?
+          'Le pseudo est déjà pris' : ($_SESSION['inscriptionFlag'] == 1 ?
+          'Pseudo != mot de passe' : '');
+          echo "placeholder='" . $placeHolder . "'";
+          ?>
           />
           <br />
           <br />

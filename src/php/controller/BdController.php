@@ -17,7 +17,17 @@ class BdController{
   }
 
   function inscrireJoueur($pseudo,$psw){
-    return $this->bd->inscrireJoueur($pseudo, $psw);
+    if ($pseudo != $psw){ // Le pseudo et mot de passe doivent être le même
+      $_SESSION['inscriptionFlag'] = 1;
+      return false;
+    }
+    if ($this->bd->inscrireJoueur($pseudo, $psw)){
+      return true;
+    }
+    else{ // Le pseudo est déjà pris
+      $_SESSION['inscriptionFlag'] = -1;
+      return false;
+    }
   }
 
   function authentifier($pseudo,$mdp){

@@ -18,7 +18,7 @@
     </tr>
     <?php
     $i =1;
-    foreach ($this->getHighScores() as $score) {
+    foreach ($this->bd->getHighScores() as $score) {
       ?>
       <tr>
           <td><?php echo $i ; $i++?></td>
