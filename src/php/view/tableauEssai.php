@@ -49,5 +49,9 @@
       <th><input type="radio" name="color4" value="8" id = "b48" class="couleur8"/><label for="b48"></label></th>
     </tr>
   </table>
-  <input type="submit" name="jouer" value="Play" class="soumettre"/>
+  <p style="color : #CCC">
+    Nombre de coups restant : <?php echo 10-$_SESSION['partie']->getNbCoups(); ?>
+  </p>
+  <input type="submit" name="jouer" value="Jouer" class="soumettre"/>
+
 </form>

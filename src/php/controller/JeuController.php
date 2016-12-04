@@ -26,11 +26,11 @@ function jouer(){
       $c4 = new Couleur($_POST["color4"]);
 
       $_SESSION['partie']->jouer(new Combinaison($c1,$c2,$c3,$c4));
-
+      
     }
 
 
-  
+
   }
 
 

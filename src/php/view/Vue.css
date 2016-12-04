@@ -39,7 +39,6 @@ input[type=submit]:hover{
   height: 85%;
   margin-left: 15%;
   margin-top: 3%;
-  background-color: #039;
   display: flex;
 }
 
@@ -48,6 +47,7 @@ input[type=submit]:hover{
   height:55%;
   margin: auto;
   display: flex;
+  background-color: #614B3A;
 }
 
 .auth{

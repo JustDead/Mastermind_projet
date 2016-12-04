@@ -102,6 +102,7 @@ public function inscrireJoueur($pseudo, $psw){
     try{
       $statement = $this->connexion->prepare("INSERT INTO joueurs (pseudo, motDePasse) VALUES (?,?);");
       $statement->bindParam(1, $pseudo);
+      // On encode le mot de passe avec un nouveau sel
       $statement->bindParam(2, crypt($pseudo));
       $statement->execute();
       return true;

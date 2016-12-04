@@ -14,15 +14,17 @@ class Routeur{
         // On tente d'inscrire le joueur
         $this->inscrireJoueur($_POST['pseudoEnr'],$_POST['pswEnr']);
       }
-      else{ // On a envoyé des données de connexion
+      elseif (isset($_POST['inscription'])){ // On souhaite s'inscrire
+        require __DIR__ . "/../view/Inscription.php";
+      }
+      else{ // On a essayé de se connecter
         if(isset($_POST['pseudo'], $_POST['psw'])){
-
           if ($this->bd->authentifier($_POST['pseudo'], $_POST['psw'])){
             $_SESSION['joueur'] = $_POST['pseudo'];
             $this->jeu->commencerPartie();
-          } // On n'a pas rempli
-          else{ // proposer de s'inscrire
-            require  __DIR__ . "/../view/Inscription.php";
+          } // On n'a rien fait ou échoué
+          else {
+            $this->login();
           }
         }
         else {
@@ -31,30 +33,34 @@ class Routeur{
       }
     }
     else{
-      // Il n'y a pas de partie en cours
-      if (!isset($_SESSION['partie'])){
-        $this->jeu->commencerPartie();
+      // On s'est déconnecté
+      if (isset($_POST['deco'])){
+        $this->deconnecter();
       } // On a cliqué sur reset
       elseif (isset($_POST['recommencer'])) {
         $this->jeu->recommencer();
-      } // On s'est déconnecté
-      elseif (isset($_POST['deco'])) {
-        $this->deconnecter();
+      } // Il n'y a pas de partie en cours (f5 sur l'écran des scores)
+      elseif (!isset($_SESSION['partie'])) {
+        $this->jeu->commencerPartie();
       }
       else{ // on a joué ou appuyé sur f5
         $this->jeu->jouer();
-        // Si on a fini on enregistre le score
+        // Si on a fini on rentre le score
         if($_SESSION['partie']->getPartieFinie()){
           $this->bd->rentrerScore($_SESSION['partie']);
         }
         // Continuer
         require  __DIR__ . "/../view/VueJeu.php";
+        // On détruit la partie après l'affichage si elle est finie
+        if($_SESSION['partie']->getPartieFinie()){
+          unset($_SESSION['partie']);
+        }
       }
     }
   }
 
   function login(){
-    require  __DIR__ . "/../view/Vue.html";
+    require  __DIR__ . "/../view/VueConnexion.php";
   }
 
   function deconnecter(){

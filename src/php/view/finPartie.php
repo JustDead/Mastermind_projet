@@ -28,7 +28,7 @@
       <?php
     }
     ?>
-    <tr><td><label class ="titreHS">Vos stats</label></td></tr>
+    <tr><td><label class ="titreHS">Statistiques</label></td></tr>
     <tr>
       <th>Ratio de victoires</th>
       <th>Nombre de coups moyens pour gagner</th>

@@ -8,10 +8,6 @@ class BdController{
     $this->bd = new BaseDonnees();
   }
 
-  function getPseudos(){
-    return $this->bd->getPseudos();
-  }
-
   function exists($pseudo){
     return $this->bd->exists($pseudo);
   }
@@ -43,10 +39,12 @@ class BdController{
     $this->bd->majParties($partie);
   }
 
-  function getStatsJoueur($pseudo){ // 0 : nb parties gagnées 1: nb parties jouées 2: nb coups dans parties gagnées
+  function getStatsJoueur($pseudo){
+    // 0 : nb parties gagnées 1: nb parties jouées 2: nb coups dans parties gagnées
     $stats = $this->bd->getStatsJoueur($pseudo);
-    $winRate = round($stats[0]/$stats[1]*100);
-    $coupsMoy = round($stats[2]/$stats[0]);
+    // On évite de diviser par 0
+    $winRate = $stats[1] == 0 ? 0 : round($stats[0]/$stats[1]*100);
+    $coupsMoy = $stats[0] == 0 ? 0 : round($stats[2]/$stats[0]);
     return array($winRate,$coupsMoy);
   }
 }

@@ -10,6 +10,14 @@
   <div class="fenetre_auth">
     <div class="auth">
       <form method="post" action="index.php">
+        <?php
+        if (isset($_POST['pseudo'])) {
+          ?>
+          <p style = "color : red">
+            Pseudo ou mot de passe incorrect
+          </p>
+          <?php
+        } ?>
           <p class="texte">Pseudo</p>
           <input type="text" name="pseudo"/>
           <br />
@@ -18,7 +26,11 @@
           <input type="password" name="psw"/>
           <br />
           <br />
-          <input type="submit" name="Valider" value="ENVOYER" class=soumettre/>
+          <input type="submit" name="Valider" value="CONNEXION" class=soumettre/>
+<?php if(isset($_POST['pseudo'])) { ?>
+          <input type="submit" name="inscription" value="INSCRIPTION">
+<?php } ?>
+
       </form>
     </div>
   </div>

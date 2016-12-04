@@ -13,7 +13,7 @@
   <div class="fenetre_joueur">
     <?php
     if (!$_SESSION['partie']->getPartieFinie()){
-      require "view/tableauEssai.html";
+      require "view/tableauEssai.php";
     }
     else{
       require "view/finPartie.php";
@@ -94,7 +94,7 @@
 
   </table>
   <form action="index.php" method="post">
-    <input type="submit" name="recommencer" value="Reset" class="soumettre"/>
+    <input type="submit" name="recommencer" value="Recommencer" class="soumettre"/>
   </form>
   </form>
     </div>
